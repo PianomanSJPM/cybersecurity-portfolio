@@ -13,9 +13,9 @@
 - **Location**: [Your City, State]
 
 ### Professional Profiles
-- **LinkedIn**: [Your LinkedIn Profile URL]
+- **LinkedIn**: https://www.linkedin.com/in/stephen-miller-2b31a612/
 - **GitHub**: https://github.com/PianomanSJPM
-- **Portfolio Website**: [Your Portfolio URL]
+- **Portfolio Website**: https://pianomansjpm.github.io/cybersecurity-portfolio
 
 ### Additional Platforms
 - **Twitter/X**: [Your Twitter Handle]
