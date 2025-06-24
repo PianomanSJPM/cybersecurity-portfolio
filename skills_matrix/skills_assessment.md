@@ -12,6 +12,16 @@
 
 ## Technical Skills
 
+### DevSecOps & Automation
+| Skill | Proficiency | Evidence |
+|-------|-------------|----------|
+| Docker Security | Intermediate | Containerized security tools, secure Dockerfiles |
+| CI/CD Security | Intermediate | GitHub Actions security pipelines |
+| Infrastructure as Code | Beginner | Terraform security configurations (learning) |
+| Kubernetes Security | Beginner | K8s security policies (planned) |
+| Policy as Code | Beginner | Open Policy Agent (planned) |
+| AI Security Tools | Intermediate | LLM integration for security analysis |
+
 ### Network Security
 | Skill | Proficiency | Evidence |
 |-------|-------------|----------|
