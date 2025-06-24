@@ -1,10 +1,10 @@
 # Multi-stage build for secure network monitoring
 FROM python:3.9-slim as builder
 
-# Set build arguments
-ARG BUILD_DATE
-ARG VCS_REF
-ARG VERSION
+# Set build arguments with default values
+ARG BUILD_DATE=unknown
+ARG VCS_REF=unknown
+ARG VERSION=1.0.0
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y \
