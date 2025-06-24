@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stephen Miller - Cybersecurity Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .tagline {
+            color: #34495e;
+            font-style: italic;
+        }
+
+        .nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #2c3e50;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .project-card p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .skill-category h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .skill-list li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #2c3e50;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .contact-links a {
+            color: #2c3e50;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #2c3e50;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .project-grid, .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Stephen Miller</h1>
+            <div class="subtitle">Cybersecurity Professional</div>
+            <div class="tagline">Protecting digital assets through innovative security solutions</div>
+        </header>
+
+        <nav class="nav">
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <section id="about" class="section">
+            <h2>About Me</h2>
+            <p>I am a cybersecurity professional with hands-on experience in incident response, vulnerability assessment, access control, and security automation. My portfolio demonstrates practical experience in protecting organizational assets through comprehensive security solutions.</p>
+            
+            <div style="margin-top: 20px;">
+                <h3>Key Strengths</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Incident Response:</strong> Comprehensive incident handling and documentation</li>
+                    <li><strong>Security Assessment:</strong> Vulnerability scanning and risk analysis</li>
+                    <li><strong>Access Control:</strong> Identity management and security policy implementation</li>
+                    <li><strong>Automation:</strong> Python-based security tools and automation solutions</li>
+                    <li><strong>Network Security:</strong> Monitoring, analysis, and threat detection</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card" onclick="showProject('incident-response')">
+                    <h3>Incident Response</h3>
+                    <p>Comprehensive incident handling documentation including phishing response, USB security exercises, and incident handler journals.</p>
+                    <small>Click to view details</small>
+                </div>
+                
+                <div class="project-card" onclick="showProject('vulnerability-assessment')">
+                    <h3>Vulnerability Assessment</h3>
+                    <p>Security assessment work including vulnerability reports, SQL injection analysis, and risk assessment methodologies.</p>
+                    <small>Click to view details</small>
+                </div>
+                
+                <div class="project-card" onclick="showProject('access-control')">
+                    <h3>Access Control</h3>
+                    <p>Identity management implementations, data leak prevention strategies, and Linux file permission management.</p>
+                    <small>Click to view details</small>
+                </div>
+                
+                <div class="project-card" onclick="showProject('automation')">
+                    <h3>Security Automation</h3>
+                    <p>Python-based security tools, VPS update automation, network monitoring systems, and custom security toolkits.</p>
+                    <small>Click to view details</small>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <h2>Skills Matrix</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Network Security</h3>
+                    <ul class="skill-list">
+                        <li>TCPdump Analysis</li>
+                        <li>Wireshark</li>
+                        <li>Network Monitoring</li>
+                        <li>Firewall Configuration</li>
+                        <li>IDS/IPS</li>
+                    </ul>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                    <small>Intermediate Level</small>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Incident Response</h3>
+                    <ul class="skill-list">
+                        <li>Incident Documentation</li>
+                        <li>Evidence Collection</li>
+                        <li>Threat Hunting</li>
+                        <li>Incident Triage</li>
+                        <li>Post-Incident Analysis</li>
+                    </ul>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%;"></div>
+                    </div>
+                    <small>Advanced Level</small>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Programming</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>Bash Scripting</li>
+                        <li>SQL</li>
+                        <li>Web Development</li>
+                        <li>API Integration</li>
+                    </ul>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%;"></div>
+                    </div>
+                    <small>Advanced Level</small>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Security Tools</h3>
+                    <ul class="skill-list">
+                        <li>Vulnerability Scanners</li>
+                        <li>SIEM Platforms</li>
+                        <li>Penetration Testing</li>
+                        <li>Security Automation</li>
+                        <li>Compliance Tools</li>
+                    </ul>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%;"></div>
+                    </div>
+                    <small>Intermediate Level</small>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <h2>Contact Information</h2>
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <p>I'm always interested in new opportunities and collaborations in the cybersecurity field.</p>
+                <div class="contact-links">
+                    <a href="mailto:pianomansjpm@gmail.com">Email</a>
+                    <a href="[linkedin-url]" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/PianomanSJPM" target="_blank">GitHub</a>
+                    <a href="[portfolio-url]" target="_blank">Portfolio</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        function showProject(projectType) {
+            const modal = document.getElementById('projectModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            let content = '';
+            
+            switch(projectType) {
+                case 'incident-response':
+                    content = `
+                        <h2>Incident Response Projects</h2>
+                        <h3>Key Projects:</h3>
+                        <ul>
+                            <li><strong>Incident Handler Journal:</strong> Comprehensive incident response documentation following industry best practices</li>
+                            <li><strong>Phishing Alert Response:</strong> Real-world phishing incident handling and response procedures</li>
+                            <li><strong>USB Security Exercise:</strong> Physical security incident involving suspicious USB devices</li>
+                            <li><strong>Incident Documentation:</strong> Systematic approach to incident tracking and lessons learned</li>
+                        </ul>
+                        <h3>Skills Demonstrated:</h3>
+                        <ul>
+                            <li>Incident classification and prioritization</li>
+                            <li>Evidence collection and chain of custody</li>
+                            <li>Stakeholder communication and coordination</li>
+                            <li>Post-incident analysis and reporting</li>
+                        </ul>
+                    `;
+                    break;
+                    
+                case 'vulnerability-assessment':
+                    content = `
+                        <h2>Vulnerability Assessment Projects</h2>
+                        <h3>Key Projects:</h3>
+                        <ul>
+                            <li><strong>Vulnerability Assessment Report:</strong> Complete security assessment methodology and findings</li>
+                            <li><strong>SQL Injection Analysis:</strong> Database security assessment and testing techniques</li>
+                            <li><strong>Security Testing:</strong> OWASP Top 10 methodology implementation</li>
+                        </ul>
+                        <h3>Skills Demonstrated:</h3>
+                        <ul>
+                            <li>Automated and manual vulnerability scanning</li>
+                            <li>Risk assessment and CVSS scoring</li>
+                            <li>Remediation planning and recommendations</li>
+                            <li>Security testing methodologies</li>
+                        </ul>
+                    `;
+                    break;
+                    
+                case 'access-control':
+                    content = `
+                        <h2>Access Control Projects</h2>
+                        <h3>Key Projects:</h3>
+                        <ul>
+                            <li><strong>Access Control Implementation:</strong> Role-based access control (RBAC) design</li>
+                            <li><strong>Data Leak Prevention:</strong> DLP strategy and monitoring systems</li>
+                            <li><strong>Linux Security:</strong> File permissions and system hardening</li>
+                        </ul>
+                        <h3>Skills Demonstrated:</h3>
+                        <ul>
+                            <li>Identity management and user provisioning</li>
+                            <li>Authentication and authorization frameworks</li>
+                            <li>Access control matrix development</li>
+                            <li>Security policy implementation</li>
+                        </ul>
+                    `;
+                    break;
+                    
+                case 'automation':
+                    content = `
+                        <h2>Security Automation Projects</h2>
+                        <h3>Key Projects:</h3>
+                        <ul>
+                            <li><strong>VPS Update Automation:</strong> Comprehensive security and update automation platform</li>
+                            <li><strong>Security Toolkit:</strong> Modular security toolkit with specialized modules</li>
+                            <li><strong>Network Monitoring:</strong> Real-time network monitoring and device management</li>
+                            <li><strong>Python Automation:</strong> Custom security tools and scripts</li>
+                        </ul>
+                        <h3>Skills Demonstrated:</h3>
+                        <ul>
+                            <li>Python programming for security automation</li>
+                            <li>Web development for security dashboards</li>
+                            <li>API integration and tool development</li>
+                            <li>DevOps practices for security tools</li>
+                        </ul>
+                    `;
+                    break;
+            }
+            
+            modalContent.innerHTML = content;
+            modal.style.display = 'block';
+        }
+        
+        function closeModal() {
+            document.getElementById('projectModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('projectModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+        
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
