@@ -17,8 +17,8 @@ WORKDIR /app
 # Copy requirements first for better caching
 COPY requirements.txt .
 
-# Install Python dependencies
-RUN pip install --user --no-cache-dir -r requirements.txt
+# Install Python dependencies globally
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Production stage
 FROM python:3.9-slim
@@ -31,6 +31,13 @@ LABEL org.opencontainers.image.version="${VERSION}"
 LABEL org.opencontainers.image.title="Network Security Monitor"
 LABEL org.opencontainers.image.description="Secure network monitoring container for DevSecOps"
 
+# Install system dependencies for packet capture
+RUN apt-get update && apt-get install -y \
+    tcpdump \
+    net-tools \
+    iproute2 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Create non-root user
 RUN groupadd -r security && useradd -r -g security security
 
@@ -38,10 +45,10 @@ RUN groupadd -r security && useradd -r -g security security
 WORKDIR /app
 
 # Copy Python packages from builder
-COPY --from=builder /root/.local /root/.local
+COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
 
 # Copy application code
-COPY network_monitor.py .
+COPY network_monitor_simple.py .
 COPY config/ ./config/
 COPY modules/ ./modules/
 
@@ -62,10 +69,10 @@ ENV LOG_LEVEL=INFO
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import network_monitor; print('Health check passed')" || exit 1
+    CMD python -c "import requests; requests.get('http://localhost:8080/health')" || exit 1
 
-# Expose port (if needed)
+# Expose port
 EXPOSE 8080
 
 # Run the application
-CMD ["python", "network_monitor.py"] 
+CMD ["python", "network_monitor_simple.py"] 

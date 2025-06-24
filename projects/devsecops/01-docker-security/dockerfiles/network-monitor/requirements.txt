@@ -1,4 +1,2 @@
-scapy==2.6.1
-pyshark==0.6
-pandas==2.3.0
-mac-vendor-lookup==0.1.12 
+flask==2.3.3
+requests==2.31.0 
